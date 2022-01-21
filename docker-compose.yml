@@ -1,0 +1,25 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      #location of files
+      dockerfile: Dockerfile.dev
+      #path to dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+    #attach local volumes to container
+      - /home/vishwajeet/docker/frontend
+      #do not attach
+      - .:/app
+      #attach current local volume to container
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/vishwajeet/docker/frontend
+      - .:/app
+    command: ["npm", "run", "test"]
+    #override default commands
