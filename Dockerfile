@@ -7,5 +7,7 @@ COPY . .
 RUN npm run build
 
 FROM nginx
+EXPOSE 80
+#expose post to world
 COPY --from=builder /app/build /usr/share/nginx/html
 #copy files from alias
